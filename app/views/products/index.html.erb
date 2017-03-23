@@ -1,0 +1,17 @@
+<h1> All Products </h1>
+
+<div>
+	<% @products.each do |product| %>
+
+	<%= product.title.capitalize %>
+	<br>
+
+	$ <%=product.price%> 
+
+	<br>
+	<%= product.description%>
+	<br>
+	<br>
+
+	<% end %>
+</div>
