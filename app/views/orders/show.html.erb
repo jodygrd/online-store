@@ -1,0 +1,21 @@
+<h1> Your Order </h1>
+
+Your Name: <%= @order.user.name %>
+<br>
+Your Email: <%= @order.user.email %>
+<br>
+Order ID: <%= @order.id %>
+<br>
+Purchase Time: <%= @order.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
+<br>
+Quantity: <%= @order.quantity %>
+<br>
+Product ID: <%= @order.product_id %>
+<br>
+Subtotal: <%= number_to_currency(@order.subtotal) %> 
+<br>
+Tax: <%= number_to_currency(@order.tax) %>
+<br>
+Total: <%= number_to_currency(@order.total) %> 
+
+

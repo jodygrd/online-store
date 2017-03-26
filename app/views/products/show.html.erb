@@ -1,7 +1,36 @@
 <h1> <%= @product.title %> </h1>
-<div>
-	$ <%= @product.price%>0
+<div class="row">
+		<% @product.images.each do |image| %>
+			<div class="well col-md-3">
+				<img src="<%= image.url %>" width="200" ></img>
+			</div>
+		<%end%> 
 </div>
-<div>
-	Description: <%= @product.description%>
+
+<div class="row">
+	<div class="well col-md-4">
+		<br>
+		<%= number_to_currency(@product.price) %>
+	  <br>
+		Description: <%= @product.description%>
+		<br>
+		Product Id: <%= @product.id %>
+		<br>
+		Tags: <% @product.categories.each do |category|%>
+				<%=category.name%>;
+				<%end%>
+	</div>
+
+
+	<div class="well col-md-4">
+	<h3> Purchase Form: </h3>
+		<%= form_tag "/orders", method: :post do%>
+		Quantity: <input type="text" name="quantity">
+			<br>
+		 <input type="hidden" name="product_id" value="<%= @product.id %>" >
+			<br>
+		<input type="submit" value="Buy Now!">
+		<%end%>
+	</div>
+
 </div>

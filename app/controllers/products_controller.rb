@@ -3,7 +3,14 @@ class ProductsController < ApplicationController
 
 	
 	def index
-		@products = Product.all
+		category_id = params[:category_id]
+		if  category_id
+			category = Category.find(category_id)
+			@products = category.products
+		else
+			@products = Product.all
+		end
+
 	end
 
 	def show

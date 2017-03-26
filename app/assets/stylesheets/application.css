@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+
+.well {background-color: white;
+			text-align: center;
+ 			margin: 10px;
+ 			margin-bottom: 1px}
+
+body {background-image: url("foggy_birds.png");
+font-family: 'Nova Oval', cursive;
+}
+
+p {text-align: right;
+	margin-bottom: 1px}
+
+.navbar {background-color: #410139;
+}
+
+a {color: #410139}
