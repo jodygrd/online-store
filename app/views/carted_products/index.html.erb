@@ -1,0 +1,33 @@
+<h1> Cauldron </h1>
+
+
+
+<% @carted_products.each do |object| %>
+	<div class="container">
+	   Product: <%= object.product.title %> |
+	   Price: <%= number_to_currency(object.product.price) %> |
+	   Quantity: <%= object.quantity %>  
+	   <div class="btn">  
+	   <%=form_tag "/cart",  method: :patch do%> 
+	   	<input type="hidden" name="product_id" value="<%=object.id%>">
+	   	<input type="submit" Value="Remove from Cart">
+	   <%end%>
+	   </div>
+	   <br>
+	</div>
+<%end%>
+
+<div>
+	<% current_user.calculate_cart.each do |key,value| %>
+		<%= "#{key.capitalize}: #{number_to_currency(value)}" %>
+		<br>
+	<% end %>
+</div>
+
+
+
+<div>
+	<%= form_tag "/orders", method: :post do %>
+		<input type="submit" value="Make Purchase">
+	<%end%>
+</div>

@@ -14,4 +14,21 @@ class ApplicationController < ActionController::Base
   	@categories = Category.all
   end
   helper_method :categories
+
+ 
+  def cart_items_total
+    if current_user
+      @carted_products = CartedProduct.where(
+          user_id: current_user.id, 
+          status: "carted"
+        )
+      total = 0
+      @carted_products.each do |cp|
+        total += 1*cp.quantity
+      end
+      total
+    end
+  end
+  helper_method :cart_items_total
+
 end

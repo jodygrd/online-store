@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   post "/orders" => "orders#create" 
   get "/orders/:id" => "orders#show"
 
+  #cart
+  get "/cart" => "carted_products#index"
+  post "/cart" => "carted_products#create"
+  patch "/cart" => "carted_products#update"
+  
 
-
+ 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

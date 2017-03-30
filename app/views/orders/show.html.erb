@@ -8,10 +8,6 @@ Order ID: <%= @order.id %>
 <br>
 Purchase Time: <%= @order.created_at.strftime("%e %b %Y %H:%M:%S%p") %>
 <br>
-Quantity: <%= @order.quantity %>
-<br>
-Product ID: <%= @order.product_id %>
-<br>
 Subtotal: <%= number_to_currency(@order.subtotal) %> 
 <br>
 Tax: <%= number_to_currency(@order.tax) %>

@@ -14,7 +14,7 @@
 	  <br>
 		Description: <%= @product.description%>
 		<br>
-		Product Id: <%= @product.id %>
+		<%= @product.in_stock %>
 		<br>
 		Tags: <% @product.categories.each do |category|%>
 				<%=category.name%>;
@@ -23,13 +23,21 @@
 
 
 	<div class="well col-md-4">
-	<h3> Purchase Form: </h3>
-		<%= form_tag "/orders", method: :post do%>
-		Quantity: <input type="text" name="quantity">
+	<h3> Add to Cauldron: </h3>
+		<%= form_tag "/cart", method: :post do%>
+		Quantity: <!-- <input type="text" name="quantity"> -->
+		<select name="quantity">
+			<% stock = 1%>
+			<% @product.stock.times do %>
+			  <option value="<%=stock%>"><%=stock%></option>
+			  <% stock += 1%>
+		  <%end%>
+		</select>
+
 			<br>
 		 <input type="hidden" name="product_id" value="<%= @product.id %>" >
 			<br>
-		<input type="submit" value="Buy Now!">
+		<input type="submit" value="Add to Cauldron!">
 		<%end%>
 	</div>
 

@@ -21,13 +21,25 @@
  			margin-bottom: 1px}
 
 body {background-image: url("foggy_birds.png");
-font-family: 'Nova Oval', cursive;
+font-family: 'Lato', sans-serif;
+
 }
 
 p {text-align: right;
-	margin-bottom: 1px}
+	margin-bottom: 1px;
+}
 
 .navbar {background-color: #410139;
 }
 
 a {color: #410139}
+
+.container { display: flex;
+	margin: 10px;
+}
+
+.btn {margin-top: 0px;
+padding-top: 0px}
+
+h1 { font-family: 'Nova Oval', cursive;
+	padding-left: 15px; }
