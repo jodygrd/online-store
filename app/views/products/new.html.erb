@@ -1,4 +1,16 @@
 <h1> Add a Product </h1>
+
+<% if @product.errors.any? %>
+	<div>
+		<ul>
+			<% @product.errors.full_messages.each do |message|%>
+				<li><%= message %></li>
+			<%end%>
+		</ul>
+	</div>
+<%end%>
+
+
 <div>
 	<%= form_tag "/products", method: :post do %>
 		Product Name: <input type="text" name="title">
@@ -7,8 +19,10 @@
 		<br>
 		Product Description: <input type="text" name="description">
 		<br>
-		Product Supplier: 
-		
+		Supplier ID: <input type="text" name="supplier_id">
+		<br>
+		Stock: <input type="text" name="stock">
+		<br>
 		<input type="submit" value="Add Product">
 	<%end%>
 </div>

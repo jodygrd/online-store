@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_admin!, except: [:index, :show]
 
 	
 	def index
@@ -18,12 +18,20 @@ class ProductsController < ApplicationController
 	end
 
 	def new
+		@product = Product.new
 	end
 
 	def create
-		@product = Product.create({title:params[:title], price:params[:price], description:params[:description]})
-		flash[:success] = "Product Created!"
-		redirect_to "/products/new"
+		@product = Product.new({title:params[:title], price:params[:price], description:params[:description], supplier_id: params[:supplier_id], stock: params[:stock]})
+		
+		if @product.save
+			flash[:success] = "Product Created!"
+			redirect_to "/products/new"
+		else
+			flash[:danger] = "Could not create product!"
+			render "new.html.erb"
+		end
+
 	end
 
 	def edit

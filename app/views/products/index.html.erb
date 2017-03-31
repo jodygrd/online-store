@@ -1,19 +1,21 @@
 <h1> All Products </h1>
 
 <div>
-<% @products.each_slice(3) do |three_products| %>
-	<div class="row">
-		<% three_products.each do |product| %>
-			<div class="col-lg-3 col-md-4 col-sm-6">
-				<div class="well">
-					 <img src="<%=product.images.first.url%>" height="225"> </img>
-					  <br>
-					  <h3><a href="/products/<%=product.id%>"> <%= product.title.capitalize %> </a>
+	<% @products.each_slice(3) do |three_products| %>
+		<div class="row">
+			<% three_products.each do |product| %>
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="well">
+						<%if product.images%>
+							 <img src="<%=product.images.first.url%>" height="225"> </img>
+						<%end%>
+						<br>
+						<h3><a href="/products/<%=product.id%>"> <%= product.title.capitalize %> </a>
 						<br></h3>
 						<p><%=number_to_currency(product.price)%></p>
-						</div>
 					</div>
-				<%end%> 
-		  </div>
+				</div>
+			<%end%> 
+		</div>
 	<% end %>
 </div>

@@ -1,13 +1,27 @@
 <h1> Create a Witch! </h1>
 
-<%= form_tag "/users", method: :post do %>
-	Name: <input type="text" name="name">
-	<br>
-	Email:<input type="text" name="email">
-	<br>
-	Password:<input type="password" name="password">
-	<br>
-	Confirm Password:<input type="password" name="password_confirmation">
-	<br>
-	<input type="submit" text="Create Witch">
+<% if @user.errors.any? %>
+	<div>
+		<%= pluralize(@user.errors.count, "Error") %>: 
+		<br>
+		<ul>
+			<% @user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<%end%>
+		</ul>
+	</div>
 <%end%>
+
+<div>
+	<%= form_tag "/users", method: :post do %>
+		Name: <input type="text" name="name" value="<%= @user.name %>">
+		<br>
+		Email:<input type="text" name="email" value="<%= @user.email %>">
+		<br>
+		Password:<input type="password" name="password">
+		<br>
+		Confirm Password:<input type="password" name="password_confirmation">
+		<br>
+		<input type="submit" text="Create Witch">
+	<%end%>
+</div>

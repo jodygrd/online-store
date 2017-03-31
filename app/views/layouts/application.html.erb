@@ -48,7 +48,7 @@
             <%if current_user%>
               <li><a href="/logout">Logout <%=current_user.name.capitalize%></a></li>
             <%else%>
-              <li><a href="/Login">Login</a></li>
+              <li><a href="/login">Login</a></li>
             <%end%>
             <!-- cart -->
             <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <%= cart_items_total %> </a></li>
