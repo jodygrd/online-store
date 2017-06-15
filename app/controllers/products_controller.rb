@@ -22,7 +22,11 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		@product = Product.new({title:params[:title], price:params[:price], description:params[:description], supplier_id: params[:supplier_id], stock: params[:stock]})
+		@product = Product.new({title:params[:title], 
+				price:params[:price], 
+				description:params[:description], 
+				supplier_id: params[:supplier_id], 
+				stock: params[:stock]})
 		
 		if @product.save
 			flash[:success] = "Product Created!"
@@ -39,8 +43,20 @@ class ProductsController < ApplicationController
 	end
 
 	def update
-		@product = Product.update({id:params[:id], title:params[:title], price:params[:price], description:params[:description]})
-		redirect_to "/products/#{@product.id}"
+		@product = Product.find_by(id: params[:id])
+		@product.title = params[:title]
+		@product.price = params[:price] 
+		@product.description = params[:description]
+		@product.stock = params[:stock]
+
+		if @product.save
+			flash[:success] = "Product updated!"
+			redirect_to "/products/#{@product.id}"
+		else 
+			flash[:danger] = "Product could not be updated."
+			render "edit.html.erb"
+		end
+
 	end
 
 	def destroy

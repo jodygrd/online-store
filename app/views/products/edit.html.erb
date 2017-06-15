@@ -1,13 +1,28 @@
 <h1> Edit Product </h1>
 
+<% if @product.errors.any? %>
+	<ul>
+		<% @product.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<%end%>
+	</ul>
+<%end%>
+
+<h3> <%= @product.title %> </h3>
+
 <div>
-	<%= form_tag "/products", method: :post do %>
-		Product Name: <input type="text" name="title">
+	<%= form_tag "/products", method: :patch do %>
+		<input type="hidden" name="id" value="<%=@product.id%>">
+		Product Name: <input type="text" name="title" value="<%=@product.title%>">
 		<br>
-		Product Price: <input type="text" name="price">
+		Product Price: <input type="text" name="price" value="<%=@product.price%>">
 		<br>
-		Product Description: <input type="text" name="description">
+		Product Description: <input type="text" name="description" value="<%=@product.description%>">
 		<br>
-		<input type="submit" value="Add Product">
+		Supplier: <%= collection_select(:product, :supplier_id, Supplier.all, :id, :name, prompt: "select supplier") %>
+		<br>
+		Stock: <input type="text" name="stock" value="<%=@product.stock%>">
+		<br>
+		<input type="submit" value="Edit Product">
 	<%end%>
 </div>
